@@ -5,8 +5,8 @@ The solution is to provide added features to a simple and common ``findById`` fu
 
 ## Draft of idea
 - The ``findById`` function.
-  - It is needed to check that if ``object_id`` has a valid ``transaction_id`` or not.
-    - If there is a valid ``transaction_id`` then return error! 
+  - It is needed to check that if ``object_id`` in the request has a valid ``transaction_id`` in the cache or not.
+    - If there is a valid ``transaction_id`` and the ``state`` is LOCK and ``user_id`` is not the same then return bad request error! 
     - If there is no valid ``transaction_id`` It is needed to generate a new ``transaction_id``, 
      then put the generated ``transaction_id`` as a key into the cache with values of ``transaction_state``(default=LOCKED), ``object_id``, ``user_id``, and ``expiration_time``, 
      and finally put the ``object_id`` as a key into the cache with value of ``transaction_id``.
